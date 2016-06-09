@@ -1,5 +1,5 @@
 FROM gliderlabs/alpine:3.3
-MAINTAINER uneidel
+MAINTAINER uneidel <uneidel@octonion.de>
 
 RUN echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories
 RUN apk add --no-cache wget w3m bash
