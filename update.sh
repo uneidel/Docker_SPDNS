@@ -16,11 +16,11 @@ $(wget -t 2 -T 5 -q -O- "http://icanhazip.com" "http://cfaj.freeshell.org/ipaddr
  
 #See if we have duplicate results. Print out the IP with most duplicate results.
 resulting_ip=$(echo "$get_ip" | uniq -c -d | sort | tail -1 | awk '{print $2}')
- 
+d=$(date +%y-%m-%d-%H:%M)
+echo  "$d:$resulting_ip"
 #Test if external IP is different from last one. If changed, then register new IP and send mail
 if [ "$external_ip" != "$resulting_ip" ]
 then
-    echo $resulting_ip
     echo $resulting_ip > $ipfile
     URL="https://$SPDNS_USERNAME:$SPDNS_PASSWORD@update.spdyn.de/nic/update?hostname=$SPDNS_HOSTNAME&myip=$resulting_ip"
     echo $URL
